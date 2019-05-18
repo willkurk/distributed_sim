@@ -1,0 +1,3 @@
+main
+protos/*.pb.go
+protos/js/*

@@ -1,0 +1,6 @@
+FROM envoyproxy/envoy:latest
+
+COPY docker/envoy.yaml /etc/envoy/envoy.yaml
+
+CMD /usr/local/bin/envoy -c /etc/envoy/envoy.yaml -l debug --log-path /tmp/envoy_info.log
+

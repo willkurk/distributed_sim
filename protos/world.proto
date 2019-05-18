@@ -1,0 +1,65 @@
+syntax = "proto3";
+package protos;
+
+import "google/protobuf/timestamp.proto";
+import "position.proto";
+
+message World {
+  	int32 id = 1; 
+  
+	repeated Terrain terrain = 2;
+
+  	repeated Actor actor = 3;
+
+	google.protobuf.Timestamp last_updated = 5;
+}
+
+message TerrainTemp {
+
+  	enum Dimensions {
+		TwoD = 0;
+		ThreeD = 1;
+  	}
+
+  	Dimensions dimensions = 1;
+
+  	string type = 2;
+}
+
+message Terrain {
+  
+	string type = 1;	
+
+ 	Rect2D area = 2;
+  
+	int32 x = 3;
+	int32 y = 4;
+}
+
+message ActorTemp {
+
+	enum Dimensions {
+		TwoD = 0;
+		ThreeD = 1;
+	}
+
+	Dimensions dimensions = 1;
+
+	int32 id = 2;
+
+	string type = 3;	
+
+}
+
+message Actor {
+
+	Rect2D area = 1;
+}
+
+message WorldRequest {
+
+}
+
+service WorldListen {
+   	rpc WorldStartListen(WorldRequest) returns (stream World) {}
+}

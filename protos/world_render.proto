@@ -1,0 +1,26 @@
+syntax = "proto3";
+package protos;
+
+import "google/protobuf/timestamp.proto";
+import "position.proto";
+
+message WorldRender {
+  int32 id = 1; 
+  
+  repeated EntityRender entity = 2;
+
+  google.protobuf.Timestamp last_updated = 5;
+}
+
+message EntityRender { 
+  string type = 1;
+  Rect2D area = 2;  
+}
+
+message WorldRenderRequest {
+
+}
+
+service WorldSyncRender {
+   rpc WorldStartRender(WorldRenderRequest) returns (stream WorldRender) {}
+}

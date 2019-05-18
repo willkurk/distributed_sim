@@ -1,0 +1,20 @@
+version: '2'
+services:
+  renderer:
+    image: "${REGISTRY}${REPOSITORY}distgame/renderer${TAG}"
+    command: [
+      "/app"
+    ]
+    ports:
+      - 55600:55600
+    network_mode: host
+  envoy:
+    image: "${REGISTRY}${REPOSITORY}grpcweb/envoy${TAG}"
+    ports:
+      - 8080:8080
+    network_mode: host
+  sampleclient:
+    image: "${REGISTRY}${REPOSITORY}distgame/sampleclient${TAG}"
+    ports:
+      - 3000:3000
+    network_mode: host
