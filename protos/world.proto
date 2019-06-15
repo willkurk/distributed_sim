@@ -31,9 +31,6 @@ message Terrain {
 	string type = 1;	
 
  	Rect2D area = 2;
-  
-	int32 x = 3;
-	int32 y = 4;
 }
 
 message ActorTemp {
@@ -52,8 +49,9 @@ message ActorTemp {
 }
 
 message Actor {
+	string type = 1;
 
-	Rect2D area = 1;
+	Rect2D area = 2;
 }
 
 message WorldRequest {
