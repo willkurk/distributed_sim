@@ -8,6 +8,14 @@ services:
     ports:
       - 55600:55600
     network_mode: host
+  core:
+    image: "${REGISTRY}${REPOSITORY}distgame/core${TAG}"
+    command: [
+      "/app"
+    ]
+    ports:
+      - 55500:55500
+    network_mode: host
   envoy:
     image: "${REGISTRY}${REPOSITORY}grpcweb/envoy${TAG}"
     ports:

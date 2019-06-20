@@ -49,6 +49,3 @@ EXPOSE 55600
 
 # Perform any further action as an unprivileged user.
 USER nobody:nobody
-
-# Run the compiled binary.
-ENTRYPOINT ["/app"]
