@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "google-protobuf": "^3.8.0-rc.1",
     "grpc-web": "^1.0.4"
   },
