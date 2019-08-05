@@ -77,6 +77,7 @@ func printFeatures(client pb.RouteGuideClient, rect *pb.Rectangle) {
 */
 // runRecordRoute sends a sequence of points to server and expects to get a RouteSummary from server.
 func runWorldStartRenderTest(opts []grpc.DialOption) {
+	log.Println("Testing Render API")
 	conn, err := grpc.Dial(*renderServerAddr, opts...)
 	if err != nil {
 		log.Fatalf("fail to dial: %v", err)
@@ -99,6 +100,7 @@ func runWorldStartRenderTest(opts []grpc.DialOption) {
 }
 
 func runWorldStartTest(opts []grpc.DialOption) {
+	log.Println("Testing core api")
 	conn, err := grpc.Dial(*coreServerAddr, opts...)
 	if err != nil {
 		log.Fatalf("fail to dial: %v", err)

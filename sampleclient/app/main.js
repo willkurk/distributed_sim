@@ -21,7 +21,7 @@ let app = (name) => {
     			if (entity.getType() === "villager") {
 				ctx.fillStyle = "#FF0000";
 			} else if (entity.getType() === "grass") {
-				ctx.fillStyle = "#00FF00";
+				ctx.fillStyle = "#FFFFFF";
 			}
 			var area = entity.getArea();
 			ctx.fillRect(area.getX(), area.getY(), area.getWidth(), area.getHeight());

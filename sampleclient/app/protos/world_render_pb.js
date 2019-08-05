@@ -340,7 +340,8 @@ proto.protos.EntityRender.prototype.toObject = function(opt_includeInstance) {
 proto.protos.EntityRender.toObject = function(includeInstance, msg) {
   var f, obj = {
     type: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    area: (f = msg.getArea()) && position_pb.Rect2D.toObject(includeInstance, f)
+    area: (f = msg.getArea()) && position_pb.Rect2D.toObject(includeInstance, f),
+    color: +jspb.Message.getFieldWithDefault(msg, 3, 0.0)
   };
 
   if (includeInstance) {
@@ -386,6 +387,10 @@ proto.protos.EntityRender.deserializeBinaryFromReader = function(msg, reader) {
       reader.readMessage(value,position_pb.Rect2D.deserializeBinaryFromReader);
       msg.setArea(value);
       break;
+    case 3:
+      var value = /** @type {number} */ (reader.readFloat());
+      msg.setColor(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -428,6 +433,13 @@ proto.protos.EntityRender.serializeBinaryToWriter = function(message, writer) {
       2,
       f,
       position_pb.Rect2D.serializeBinaryToWriter
+    );
+  }
+  f = message.getColor();
+  if (f !== 0.0) {
+    writer.writeFloat(
+      3,
+      f
     );
   }
 };
@@ -478,6 +490,21 @@ proto.protos.EntityRender.prototype.clearArea = function() {
  */
 proto.protos.EntityRender.prototype.hasArea = function() {
   return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional float color = 3;
+ * @return {number}
+ */
+proto.protos.EntityRender.prototype.getColor = function() {
+  return /** @type {number} */ (+jspb.Message.getFieldWithDefault(this, 3, 0.0));
+};
+
+
+/** @param {number} value */
+proto.protos.EntityRender.prototype.setColor = function(value) {
+  jspb.Message.setProto3FloatField(this, 3, value);
 };
 
 

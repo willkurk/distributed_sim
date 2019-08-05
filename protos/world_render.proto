@@ -14,7 +14,8 @@ message WorldRender {
 
 message EntityRender { 
   string type = 1;
-  Rect2D area = 2;  
+  Rect2D area = 2;
+  float color = 3;  
 }
 
 message WorldRenderRequest {

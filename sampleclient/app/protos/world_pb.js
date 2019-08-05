@@ -617,9 +617,7 @@ proto.protos.Terrain.prototype.toObject = function(opt_includeInstance) {
 proto.protos.Terrain.toObject = function(includeInstance, msg) {
   var f, obj = {
     type: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    area: (f = msg.getArea()) && position_pb.Rect2D.toObject(includeInstance, f),
-    x: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    y: jspb.Message.getFieldWithDefault(msg, 4, 0)
+    area: (f = msg.getArea()) && position_pb.Rect2D.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -665,14 +663,6 @@ proto.protos.Terrain.deserializeBinaryFromReader = function(msg, reader) {
       reader.readMessage(value,position_pb.Rect2D.deserializeBinaryFromReader);
       msg.setArea(value);
       break;
-    case 3:
-      var value = /** @type {number} */ (reader.readInt32());
-      msg.setX(value);
-      break;
-    case 4:
-      var value = /** @type {number} */ (reader.readInt32());
-      msg.setY(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -715,20 +705,6 @@ proto.protos.Terrain.serializeBinaryToWriter = function(message, writer) {
       2,
       f,
       position_pb.Rect2D.serializeBinaryToWriter
-    );
-  }
-  f = message.getX();
-  if (f !== 0) {
-    writer.writeInt32(
-      3,
-      f
-    );
-  }
-  f = message.getY();
-  if (f !== 0) {
-    writer.writeInt32(
-      4,
-      f
     );
   }
 };
@@ -779,36 +755,6 @@ proto.protos.Terrain.prototype.clearArea = function() {
  */
 proto.protos.Terrain.prototype.hasArea = function() {
   return jspb.Message.getField(this, 2) != null;
-};
-
-
-/**
- * optional int32 x = 3;
- * @return {number}
- */
-proto.protos.Terrain.prototype.getX = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
-};
-
-
-/** @param {number} value */
-proto.protos.Terrain.prototype.setX = function(value) {
-  jspb.Message.setProto3IntField(this, 3, value);
-};
-
-
-/**
- * optional int32 y = 4;
- * @return {number}
- */
-proto.protos.Terrain.prototype.getY = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
-};
-
-
-/** @param {number} value */
-proto.protos.Terrain.prototype.setY = function(value) {
-  jspb.Message.setProto3IntField(this, 4, value);
 };
 
 
@@ -1029,7 +975,10 @@ proto.protos.Actor.prototype.toObject = function(opt_includeInstance) {
  */
 proto.protos.Actor.toObject = function(includeInstance, msg) {
   var f, obj = {
-    area: (f = msg.getArea()) && position_pb.Rect2D.toObject(includeInstance, f)
+    type: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    area: (f = msg.getArea()) && position_pb.Rect2D.toObject(includeInstance, f),
+    id: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    modifier: +jspb.Message.getFieldWithDefault(msg, 4, 0.0)
   };
 
   if (includeInstance) {
@@ -1067,9 +1016,21 @@ proto.protos.Actor.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setType(value);
+      break;
+    case 2:
       var value = new position_pb.Rect2D;
       reader.readMessage(value,position_pb.Rect2D.deserializeBinaryFromReader);
       msg.setArea(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setId(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readFloat());
+      msg.setModifier(value);
       break;
     default:
       reader.skipField();
@@ -1100,30 +1061,66 @@ proto.protos.Actor.prototype.serializeBinary = function() {
  */
 proto.protos.Actor.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getType();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
   f = message.getArea();
   if (f != null) {
     writer.writeMessage(
-      1,
+      2,
       f,
       position_pb.Rect2D.serializeBinaryToWriter
+    );
+  }
+  f = message.getId();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = message.getModifier();
+  if (f !== 0.0) {
+    writer.writeFloat(
+      4,
+      f
     );
   }
 };
 
 
 /**
- * optional Rect2D area = 1;
+ * optional string type = 1;
+ * @return {string}
+ */
+proto.protos.Actor.prototype.getType = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/** @param {string} value */
+proto.protos.Actor.prototype.setType = function(value) {
+  jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional Rect2D area = 2;
  * @return {?proto.protos.Rect2D}
  */
 proto.protos.Actor.prototype.getArea = function() {
   return /** @type{?proto.protos.Rect2D} */ (
-    jspb.Message.getWrapperField(this, position_pb.Rect2D, 1));
+    jspb.Message.getWrapperField(this, position_pb.Rect2D, 2));
 };
 
 
 /** @param {?proto.protos.Rect2D|undefined} value */
 proto.protos.Actor.prototype.setArea = function(value) {
-  jspb.Message.setWrapperField(this, 1, value);
+  jspb.Message.setWrapperField(this, 2, value);
 };
 
 
@@ -1140,7 +1137,37 @@ proto.protos.Actor.prototype.clearArea = function() {
  * @return {boolean}
  */
 proto.protos.Actor.prototype.hasArea = function() {
-  return jspb.Message.getField(this, 1) != null;
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional string id = 3;
+ * @return {string}
+ */
+proto.protos.Actor.prototype.getId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/** @param {string} value */
+proto.protos.Actor.prototype.setId = function(value) {
+  jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional float modifier = 4;
+ * @return {number}
+ */
+proto.protos.Actor.prototype.getModifier = function() {
+  return /** @type {number} */ (+jspb.Message.getFieldWithDefault(this, 4, 0.0));
+};
+
+
+/** @param {number} value */
+proto.protos.Actor.prototype.setModifier = function(value) {
+  jspb.Message.setProto3FloatField(this, 4, value);
 };
 
 
